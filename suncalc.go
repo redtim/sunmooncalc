@@ -325,7 +325,7 @@ func GetMoonIllumination(date time.Time) MoonIllumination {
 	}
 }
 
-func hoursLater(date time.Time, h int64) time.Time {
+func hoursLater(date time.Time, h float64) time.Time {
 	return date.Add(time.Duration(h * dayMs / 24 * millyToNano))
 }
 
@@ -362,8 +362,8 @@ func GetMoonTimesWithObserver(date time.Time, obs Observer) MoonTimes {
 	i := int64(1)
 	for i <= 24 {
 
-		h1 := GetMoonPosition(hoursLater(t, i), obs.Latitude, obs.Longitude).Altitude - hc
-		h2 := GetMoonPosition(hoursLater(t, i+1), obs.Latitude, obs.Longitude).Altitude - hc
+		h1 := GetMoonPosition(hoursLater(t, float64(i)), obs.Latitude, obs.Longitude).Altitude - hc
+		h2 := GetMoonPosition(hoursLater(t, float64(i+1)), obs.Latitude, obs.Longitude).Altitude - hc
 		a := (h0+h2)/2 - h1
 		b := (h2 - h0) / 2
 		xe := -b / (2 * a)
@@ -414,10 +414,10 @@ func GetMoonTimesWithObserver(date time.Time, obs Observer) MoonTimes {
 	var result = MoonTimes{}
 
 	if rise != 0 {
-		result.Rise = hoursLater(t, int64(rise))
+		result.Rise = hoursLater(t, rise)
 	}
 	if set != 0 {
-		result.Set = hoursLater(t, int64(set))
+		result.Set = hoursLater(t, set)
 	}
 	if rise == 0 && set == 0 {
 		if ye > 0 {
