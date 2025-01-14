@@ -6,7 +6,7 @@ import (
 	"math"
 	"time"
 
-	"github.com/sixdouglas/suncalc"
+	"github.com/redtim/suncalc"
 )
 
 func ExampleGetTimes() {

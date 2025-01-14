@@ -1,5 +1,3 @@
-module github.com/sixdouglas/suncalc
+module github.com/redtim/sunmooncalc
 
-go 1.18
-
-// go: no requirements found in Gopkg.lock
+go 1.21.6
